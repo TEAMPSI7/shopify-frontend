@@ -27,9 +27,11 @@ const ProductPage = () => {
   };
 
   return (
-    <div className="bg-pink-100 p-8">
-      <div className='flex w-4/5 mx-auto justify-between h-[100vh]'>
-        <div className='relative w-[50%] rounded-[8px]'>
+    <div className="bg-pink-100 p-4 sm:p-8">
+      <div className='flex flex-col lg:flex-row w-full lg:w-4/5 mx-auto justify-between h-auto lg:h-[100vh]'>
+        
+        {/* Image Section */}
+        <div className='relative w-full lg:w-[50%] h-[50vh] lg:h-full rounded-[8px] mb-4 lg:mb-0'>
           <motion.div
             initial={{ opacity: 1 }}
             animate={{ opacity: isRedImageVisible ? 1 : 0 }}
@@ -38,8 +40,8 @@ const ProductPage = () => {
           >
             <Image
               src="/image/supreme_red.jpg" 
-              width={1000}
-              height={3000}
+              layout="fill"
+              objectFit="cover"
               alt="supreme_red"
               className="rounded-[8px]"
             />
@@ -52,20 +54,21 @@ const ProductPage = () => {
           >
             <Image
               src="/image/supreme_yellow.jpg" 
-              width={1000}
-              height={3000}
+              layout="fill"
+              objectFit="cover"
               alt="supreme_yellow"
               className="rounded-[8px]"
             />
           </motion.div>
         </div>
 
-        {/* Product Info section */}
-        <div className='flex flex-col w-[48%] p-4'>
-          <h1 className='text-[2rem] font-bold'>SUPREME JACKET</h1>
+        {/* Product Info Section */}
+        <div className='flex flex-col w-full lg:w-[48%] p-4'>
+          <h1 className='text-[1.5rem] lg:text-[2rem] font-bold'>SUPREME JACKET</h1>
+          
+          {/* Color selection */}
           <div className='flex items-center space-x-4 my-4'>
-            {/* Color selection */}
-            <p className='text-[1.2rem] font-semibold'>Color:</p>
+            <p className='text-[1rem] lg:text-[1.2rem] font-semibold'>Color:</p>
             <div className='flex space-x-2'>
               {['red', 'yellow'].map((color) => (
                 <button
@@ -78,6 +81,7 @@ const ProductPage = () => {
             </div>
           </div>
 
+          {/* Pricing options */}
           <div className='my-4'>
             {['1', '2', '3'].map((option) => (
               <div
@@ -87,18 +91,19 @@ const ProductPage = () => {
               >
                 <div className='flex items-center space-x-4'>
                   <input type='radio' checked={option === selectedOption} onChange={() => setSelectedOption(option)} />
-                  <p className='text-[1.2rem] font-semibold'>
+                  <p className='text-[1rem] lg:text-[1.2rem] font-semibold'>
                     Buy {option} {option === '1' ? 'Standard' : `Save ${pricing[option].discount}`}
                   </p>
                 </div>
                 <div>
-                  <p className='text-[1.2rem] font-bold'>₱{pricing[option].price.toLocaleString()} / EACH</p>
+                  <p className='text-[1rem] lg:text-[1.2rem] font-bold'>₱{pricing[option].price.toLocaleString()} / EACH</p>
                   {option === '1' && <p className='text-gray-400 line-through'>₱{pricing[option].originalPrice.toLocaleString()}</p>}
                 </div>
               </div>
             ))}
           </div>
 
+          {/* Add to cart button */}
           <button className='bg-black text-white py-3 rounded-lg mt-4'>
             ADD TO CART
           </button>
