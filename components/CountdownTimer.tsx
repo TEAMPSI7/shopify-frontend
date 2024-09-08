@@ -11,7 +11,7 @@ export default function CountdownTimer() {
   });
 
   useEffect(() => {
-    const saleEndTime = new Date().getTime() + 10 * 60 * 1000; // Example: 10 minutes from now
+    const saleEndTime = new Date().getTime() + 10 * 60 * 1000; 
 
     const interval = setInterval(() => {
       const now = new Date().getTime();

@@ -37,7 +37,6 @@ const FadeImageComponent = () => {
 
   return (
     <div className="flex justify-between items-center w-4/5 mx-auto bg-[#EDD2FA] py-8">
-      {/* Left Side: Option List */}
       <div className="flex flex-col gap-6 w-1/2 pl-12">
         {options.map((option, index) => (
           <div
@@ -60,20 +59,19 @@ const FadeImageComponent = () => {
         ))}
       </div>
 
-      {/* Right Side: Image */}
       <div className="relative w-1/2 pr-12">
         <motion.div
           key={selectedOptionIndex}
-          initial={{ opacity: 0 }}  // Fade out starting point
-          animate={{ opacity: 1 }}  // Fade in ending point
-          exit={{ opacity: 0 }}     // Fade out ending point (for when it exits)
-          transition={{ duration: 0.5 }} // Duration of the fade effect
+          initial={{ opacity: 0 }}  
+          animate={{ opacity: 1 }}  
+          exit={{ opacity: 0 }}     
+          transition={{ duration: 0.5 }} 
         >
           <Image
             src={options[selectedOptionIndex].imageUrl}
             alt={options[selectedOptionIndex].title}
-            width={500} // Adjust width as per your layout
-            height={500} // Adjust height as per your layout
+            width={500} 
+            height={500} 
             className="rounded-[50%]"
           />
         </motion.div>
