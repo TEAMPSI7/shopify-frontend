@@ -19,9 +19,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="bg-white h-[100vh] text-black" >
-          <div className="bg-black text-white text-center py-2">50% OFF SUMMER SALE & FREE SHIPPING</div>
-          <Navbar />
+        <div className="bg-white relative h-[100vh] text-black" >
+          <div className="absolute top-0 left-0 z-10 w-full">
+            <div className="bg-black text-white text-center py-2">50% OFF SUMMER SALE & FREE SHIPPING</div>
+            <Navbar />
+            
+          </div>
           {children}
           <Footer />
         </div>

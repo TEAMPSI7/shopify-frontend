@@ -12,7 +12,7 @@ type PricingOption = {
 const ProductPage = () => {
   const [selectedColor, setSelectedColor] = useState('red')
   const [selectedStorage, setSelectedStorage] = useState('64GB')
-  const [selectedOption, setSelectedOption] = useState('1') // Buy 1, Buy 2, or Buy 3
+  const [selectedOption, setSelectedOption] = useState('1') 
   const [isRedImageVisible, setIsRedImageVisible] = useState(true)
 
   const pricing: Record<string, PricingOption> = {

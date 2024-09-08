@@ -73,9 +73,6 @@ const Footer = () => {
 		
 			</div>
 		</div>
-		<div className='block lg:hidden px-[2rem] py-[1rem] border-t border-[#e5e5e5]'>
-			<p className='text-[0.7rem] lg:text-[1rem]'>© DWF LABS ALL RIGHTS RESERVED 2024</p>
-		</div>
     </div>
   )
 }
