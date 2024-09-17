@@ -64,9 +64,9 @@ body {
 }
 
 .bg-arcade-1 {
-  background: url(https://cdn.shopify.com/s/files/1/0685/4636/3621/files/Sale_Banner.jpg?v=1719425070) center / cover no-repeat;;
+  background: url('../public/image/bg-arcade-1.jpg') center / cover no-repeat;;
 }
 
 .bg-arcade-2 {
-  background: url(https://inlighte.com/cdn/shop/files/SoundWave_Large_Image_af390c87-39fd-44da-b631-36e6524ffb7e.jpg?v=1719205897&width=1500) center / cover no-repeat;;
+  background: url('../public/image/bg-arcade-2.jpg') center / cover no-repeat;;
 }

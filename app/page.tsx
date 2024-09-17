@@ -1,10 +1,10 @@
-import Button from "@/components/Button";
+import Button from "@/components/common/Button";
 import HomeSVG from "@/components/SVG/HomeSVG";
 import Image from "next/image";
-import CountdownTimer from "@/components/CountdownTimer";
-import Card from "@/components/Card";
-import FadeImageComponent from "@/components/FadeImageComponent";
-import NewsletterSignup from "@/components/NewsLetterSignup";
+import CountdownTimer from "@/components/mainLayout/CountdownTimer";
+import Card from "@/components/mainLayout/Card";
+import FadeImageComponent from "@/components/mainLayout/FadeImageComponent";
+import NewsletterSignup from "@/components/mainLayout/NewsLetterSignup";
 
 export default function Home() {
   return (
@@ -12,7 +12,7 @@ export default function Home() {
       <div className="relative h-[100vh] overflow-hidden">
         <video
           className="absolute top-0 left-0 w-full h-full object-cover z-15"
-          src="https://cdn.shopify.com/videos/c/o/v/8db46c7832b841a9ac36ccaf3411b1c2.mp4"
+          src="/videos/bg-video.mp4"
           autoPlay
           loop
           muted
@@ -24,7 +24,7 @@ export default function Home() {
             RELIVE THE GOLDEN ERA OF GAMING & MUSIC
           </p>
           <div className="mt-6">
-            <Button />
+            <Button text="Shop Now" linkString="/products/jacket" />
           </div>
         </div>
       </div>
@@ -34,7 +34,7 @@ export default function Home() {
             <Image
               className="rounded-[2rem] border-black border-[1px]"
               src={
-                "https://inlighte.com/cdn/shop/files/13.jpg?v=55&width=940"
+                "/image/soundwave.jpg"
               }
               alt="image"
               width={1000}
@@ -50,7 +50,7 @@ export default function Home() {
               depth like it was meant to be heard. Elevate your space, amplify
               your music, and discover a new love for staying home.
             </p>
-            <Button />
+            <Button text="Shop Now" linkString="/products/jacket" />
           </div>
         </div>
         <div className="flex justify-between w-[70%] mx-auto ">
@@ -63,13 +63,13 @@ export default function Home() {
               portable, with over 10 hours of battery life, you can play all day
               anywhere and relive your favorite childhood memories.
             </p>
-            <Button />
+            <Button text="Shop Now" linkString="/products/jacket" />
           </div>
           <div className="w-[55%] ">
             <Image
               className="rounded-[2rem] border-black border-[1px]"
               src={
-                "https://inlighte.com/cdn/shop/files/2_c7c19b06-2b24-42b5-b29c-9c6aad650b8a.jpg?v=1718525537&width=940"
+                "/image/keyboy-1.jpg"
               }
               alt="image"
               width={1000}
@@ -111,15 +111,17 @@ export default function Home() {
           <p className="text-semiblack">
             Designed with high-fidelity audio to emphasize clarity, you can experience your music in the most beautiful ways like never before.
           </p>
-          <Button />
+          <Button text="Shop Now" linkString="/products/jacket" />
         </div>
       </div>
       <div className="bg-[#EDD2FA]">
         <div className="flex w-4/5 mx-auto gap-[3rem] py-[4rem]">
-          <Card bgLink="https://inlighte.com/cdn/shop/files/7.jpg?v=1717267382&width=940" />
-          <Card bgLink="https://inlighte.com/cdn/shop/files/3_b6bbbaaf-2171-4807-b953-cdee1c5b7874.jpg"/>
+          <Card bgLink="/image/soundbox-1.jpg" />
+          <Card bgLink="/image/soundbox-2.jpg"/>
         </div>
       </div>
+
+      
       <div className="bg-[#EDD2FA] pb-[4rem]">
         <FadeImageComponent />
       </div>

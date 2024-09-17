@@ -1,5 +1,5 @@
 "use client"
-import ProductPage from '@/components/ProductPage';
+import ProductPage from '@/components/products/ProductPage';
 import Image from 'next/image'
 import React, { useState } from 'react'
 
