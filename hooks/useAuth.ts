@@ -12,8 +12,10 @@ const useAuth = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const pathname = usePathname();
+
+  // HANDLES REDIRECTION IF USER IS NOT LOGGED IN
   useEffect(() => {
-    if (!user && pathname !== '/account/register') {
+    if (!user && pathname !== '/account/register' && pathname !== '/products/jacket' && pathname !== '/') {
       router.push('/account/login');
     }
   }, [user, router, pathname]);

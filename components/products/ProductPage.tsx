@@ -2,6 +2,7 @@
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import React, { useState } from 'react'
+import useCart from '@/hooks/useCart' 
 
 type PricingOption = {
   price: number;
@@ -14,6 +15,7 @@ const ProductPage = () => {
   const [selectedStorage, setSelectedStorage] = useState('64GB')
   const [selectedOption, setSelectedOption] = useState('1') 
   const [isRedImageVisible, setIsRedImageVisible] = useState(true)
+  const { addCartItem } = useCart(); 
 
   const pricing: Record<string, PricingOption> = {
     1: { price: 5500, originalPrice: 11000, discount: '50%' },
@@ -24,6 +26,17 @@ const ProductPage = () => {
   const handleColorChange = (color: string) => {
     setSelectedColor(color);
     setIsRedImageVisible(color === 'red');
+  };
+
+  const handleAddToCart = () => {
+    const item = {
+      id: `${selectedColor}-${selectedStorage}-${selectedOption}`,
+      productId: 'supreme_jacket',
+      name: `Supreme Jacket - ${selectedColor} - ${selectedStorage}`,
+      quantity: 1,
+      price: pricing[selectedOption].price,
+    };
+    addCartItem(item);
   };
 
   return (
@@ -40,8 +53,8 @@ const ProductPage = () => {
           >
             <Image
               src="/image/supreme_red.jpg" 
-              layout="fill"
-              objectFit="cover"
+              height={1000}
+              width={1000}
               alt="supreme_red"
               className="rounded-[8px]"
             />
@@ -54,8 +67,8 @@ const ProductPage = () => {
           >
             <Image
               src="/image/supreme_yellow.jpg" 
-              layout="fill"
-              objectFit="cover"
+              height={1000}
+              width={1000}
               alt="supreme_yellow"
               className="rounded-[8px]"
             />
@@ -104,7 +117,7 @@ const ProductPage = () => {
           </div>
 
           {/* Add to cart button */}
-          <button className='bg-black text-white py-3 rounded-lg mt-4'>
+          <button className='bg-black text-white py-3 rounded-lg mt-4' onClick={handleAddToCart}>
             ADD TO CART
           </button>
         </div>

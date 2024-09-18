@@ -14,8 +14,9 @@ const Card: React.FC<CardProps> = ({ bgLink }) => {
           className='rounded-t-[1rem]' 
           src={bgLink} 
           alt='card' 
-          layout="fill" 
-          objectFit="cover" 
+          // width={1000}
+          // height={1000}
+          fill={true}
         />
       </div>
       <div className='p-[2rem] flex flex-col gap-[1rem] items-start flex-grow'>

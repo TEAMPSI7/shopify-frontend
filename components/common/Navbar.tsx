@@ -2,8 +2,9 @@
 import Link from 'next/link'
 import React, { useState } from 'react'
 import { ShoppingCartIcon, User, Menu, X } from 'lucide-react';
-
+import useAuth from '@/hooks/useAuth';
 const Navbar = () => {
+  const { user } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -32,7 +33,7 @@ const Navbar = () => {
         </div>
 
         <div className='hidden lg:flex gap-[2rem] items-center'>
-          <Link className='cursor-pointer' href={"/account/login"}>
+          <Link className='cursor-pointer' href={`/account/${user ? 'profile' : 'login'}`}>
             <User />
           </Link>
           <Link className='cursor-pointer' href={"/cart"}>

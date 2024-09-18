@@ -70,9 +70,10 @@ const FadeImageComponent = () => {
           <Image
             src={options[selectedOptionIndex].imageUrl}
             alt={options[selectedOptionIndex].title}
-            width={500} 
-            height={500} 
             className="rounded-[50%]"
+            width={500}
+            height={500}
+            // fill={true}
           />
         </motion.div>
       </div>

@@ -39,6 +39,7 @@ export default function Home() {
               alt="image"
               width={1000}
               height={1000}
+           
             />
           </div>
           <div className="flex flex-col gap-[1.5rem] items-start w-[40%]">
@@ -72,8 +73,8 @@ export default function Home() {
                 "/image/keyboy-1.jpg"
               }
               alt="image"
-              width={1000}
               height={1000}
+              width={1000}
             />
           </div>
         </div>
