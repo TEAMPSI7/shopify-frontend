@@ -12,12 +12,15 @@ const loadState = (): AppState => {
     const serializedUserState = window.localStorage.getItem('loggedShopifyUser');
     const serializedCartState = window.localStorage.getItem('userCart');
     
-    const user: UserState = serializedUserState ? JSON.parse(serializedUserState) : { user: null };   
-    const cart: CartState = serializedCartState ? JSON.parse(serializedCartState) : { items: [] };    
+    const user: UserState = serializedUserState ? JSON.parse(serializedUserState) : { userId: null, username: null, token: null };
+    const cart: CartState = serializedCartState ? JSON.parse(serializedCartState) : { items: [] };
+    
+    // Ensure that cart.items is always an array
+    cart.items = Array.isArray(cart.items) ? cart.items : [];
 
     return { user, cart };
   } catch (err) {
-    return { user: { user: null, token: null }, cart: { items: [] } };   
+    return { user: { userId: null, username: null, token: null }, cart: { items: [] } };
   }
 };
 
@@ -31,10 +34,12 @@ const store = configureStore({
   preloadedState,
 });
 
-
 store.subscribe(() => {
   const state = store.getState();
-  window.localStorage.setItem('userCart', JSON.stringify(state.cart));
+ 
+  const cartItemsCopy = JSON.parse(JSON.stringify(state.cart.items));
+  window.localStorage.setItem('userCart', JSON.stringify(cartItemsCopy));
+  console.log("STATE", state);
 });
 
 export type RootState = ReturnType<typeof store.getState>;

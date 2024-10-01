@@ -6,6 +6,7 @@ const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 const login = async (credentials: Credentials): Promise<User> => {
   try {
     const response = await axios.post(`${baseUrl}/login`, credentials);
+    console.log("LOGIN RESPONSE", response.data)
     return response.data;
   } catch (error: any) {
     throw new Error(error.response?.data?.message || 'Login failed');

@@ -6,29 +6,29 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { setUser } from '@/store/userSlice';
 import { usePathname } from 'next/navigation';
-
+import { clearCart } from '@/store/cartSlice';
 const useAuth = () => {
-  const user = useSelector((state: RootState) => state.user.user); 
+  const user = useSelector((state: RootState) => state.user); 
   const dispatch = useDispatch();
   const router = useRouter();
   const pathname = usePathname();
 
-  // HANDLES REDIRECTION IF USER IS NOT LOGGED IN
   useEffect(() => {
-    if (!user && pathname !== '/account/register' && pathname !== '/products/jacket' && pathname !== '/') {
+    if (!user.userId && pathname !== '/account/register' && pathname !== '/products/jacket' && pathname !== '/') {
       router.push('/account/login');
     }
   }, [user, router, pathname]);
 
-  const login = (username: string, token: string) => {
-    console.log("USER", typeof username);
-    dispatch(setUser({ user: username, token }));
-    window.localStorage.setItem('loggedShopifyUser', JSON.stringify({ user: username, token }));
+  const login = (userId: string, username: string, token: string) => {
+    dispatch(setUser({ userId, username, token }));
+    window.localStorage.setItem('loggedShopifyUser', JSON.stringify({ userId, username, token }));
   };
 
   const logout = () => {
-    dispatch(setUser({ user: null, token: null }));
+    dispatch(setUser({ userId: null, username: null, token: null }));
+    dispatch(clearCart())
     window.localStorage.removeItem('loggedShopifyUser');
+    window.localStorage.removeItem('userCart');
     router.push('/account/login');
   };
 

@@ -29,10 +29,7 @@ const Page = () => {
       setPasswordFocus(passwordRef.current.value !== '');
     }
 
-    if (user) {
-      router.push('/');
-    }
-  }, [user, router]);
+  }, [user]); 
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

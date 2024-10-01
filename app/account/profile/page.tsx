@@ -9,7 +9,7 @@ const Page = () => {
         <h1 className='text-[2rem] font-bold'>Profile</h1>    
         <div>
             <h2 className='text-[1.5rem] font-bold'>Name</h2>
-            <p className='text-[1.2rem]'>{user}</p>
+            <p className='text-[1.2rem]'>{user.username}</p>
         </div>
         <button onClick={logout} className='bg-black text-white p-[1rem] rounded-[0.5rem]'>Logout</button>
     </div>

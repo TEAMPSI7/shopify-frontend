@@ -15,7 +15,7 @@ const Page = () => {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
-  const { login, user } = useAuth();
+  const { login } = useAuth();
 
   useEffect(() => {
     if (emailRef.current) {
@@ -25,10 +25,7 @@ const Page = () => {
       setPasswordFocus(passwordRef.current.value !== '');
     }
 
-    if (user) {
-      router.push('/');
-    }
-  }, [user, router]);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -41,7 +38,7 @@ const Page = () => {
       const password = passwordRef.current?.value || '';
       const user = await authService.login({ username, password });
       console.log(user);
-      login(user.username.toString(), user.token.toString());
+      login(user.userId.toString(), user.username.toString(), user.token.toString());
       router.push('/');
     } catch (error: any) {
       setError(error.message);

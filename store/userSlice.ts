@@ -1,12 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface UserState {
-  user: string | null;
+  userId: string | null;
+  username: string | null;
   token: string | null;
 }
 
 const initialState: UserState = {
-  user: null,
+  userId: null,
+  username: null,
   token: null,
 };
 
@@ -14,13 +16,14 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    setUser: (state, action: PayloadAction<{ user: string | null; token: string | null }>) => {
+    setUser: (state, action: PayloadAction<{ userId: string | null; username: string | null; token: string | null }>) => {
       console.log('ACTION', action.payload);
       console.log('STATE BEFORE UPDATE', state);
 
       // Instead of mutating, return a new state object
       return {
-        user: action.payload.user,
+        userId: action.payload.userId,
+        username: action.payload.username,
         token: action.payload.token,
       };
     },
