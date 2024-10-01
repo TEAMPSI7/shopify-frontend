@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect, useRef } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '@/store/store';
-import { addItem, removeItem, updateItem, clearCart } from '@/store/cartSlice';
-import { CartItem } from '@/store/cartSlice';
-import axios from 'axios';
-import useAuth from '@/hooks/useAuth';
+import { useEffect, useRef } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "@/store/store";
+import { addItem, clearCart, removeItem, updateItem } from "@/store/cartSlice";
+import { CartItem } from "@/store/cartSlice";
+import axios from "axios";
+import useAuth from "@/hooks/useAuth";
 
 const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -16,64 +16,49 @@ const useCart = () => {
   const { user } = useAuth();
 
   const hasFetchedCart = useRef(false);
-  const previousCart = useRef<CartItem[]>([]);
 
-  // Fetch cart only when user is authenticated
+  const isCartEqual = (currentCart: CartItem[], fetchedCart: CartItem[]) => {
+    if (currentCart.length !== fetchedCart.length) return false;
+
+
+    for (let i = 0; i < currentCart.length; i++) {
+      const currentItem = currentCart[i];
+      const fetchedItem = fetchedCart.find((item) => item.id === currentItem.id);
+
+      if (!fetchedItem || fetchedItem.quantity !== currentItem.quantity) {
+        return false;
+      }
+    }
+
+    return true;
+  };
+
+ 
   useEffect(() => {
-    console.log("USER", user)
     if (!user || !user.token || hasFetchedCart.current) return;
-    console.log("ITTTTTTTTTTTTTT")
+
     const fetchCart = async () => {
       try {
         const response = await axios.get(`${baseUrl}/users/cart/`, {
           params: { userId: user.userId },
         });
         const cartData = response.data;
-        console.log("CART DATA", cartData)
-        // if (cartData) {
-        //   dispatch(clearCart());
-        //   cartData.forEach((item: CartItem) => {
-        //     dispatch(addItem(item));
-        //   });
-        // }
 
-        hasFetchedCart.current = true;
+        if (cartData && !isCartEqual(cart, cartData)) {
+          dispatch(clearCart()); 
+          cartData.forEach((item: CartItem) => {
+            dispatch(addItem(item)); 
+          });
+        }
+
+        hasFetchedCart.current = true; 
       } catch (error) {
-        console.error('Failed to fetch cart from backend:', error);
+        console.error("Failed to fetch cart from backend:", error);
       }
     };
 
     fetchCart();
-  }, [user, dispatch]);
-
-  // Sync cart to backend on any cart change, but only if there are differences
-  useEffect(() => {
-    if (!user || previousCart.current === cart) return;
-
-    const syncCartToBackend = async () => {
-      try {
-        // Clear backend cart
-        await axios.post(`${baseUrl}/users/cart/clear`, { userId: user.userId });
-        
-        // Sync each item in the local cart to backend
-        for (const item of cart) {
-          await axios.post(`${baseUrl}/users/cart/add`, {
-            userId: user.userId,
-            productId: item.productId,
-            quantity: item.quantity,
-          });
-        }
-
-        previousCart.current = cart; // Update the previous cart state
-
-      } catch (error) {
-        console.error('Failed to sync cart to backend:', error);
-        // Optionally, you can store failed sync attempts in localStorage for retry later
-      }
-    };
-
-    syncCartToBackend();
-  }, [cart, user, dispatch]);
+  }, [user, dispatch, cart]);
 
   const addCartItem = async (item: CartItem) => {
     dispatch(addItem(item));
@@ -84,8 +69,7 @@ const useCart = () => {
         quantity: item.quantity,
       });
     } catch (error) {
-      console.error('Failed to add item to cart in backend:', error);
-      // Optionally handle the error (retry, show notification, etc.)
+      console.error("Failed to add item to cart in backend:", error);
     }
   };
 
@@ -97,7 +81,7 @@ const useCart = () => {
         productId: itemId,
       });
     } catch (error) {
-      console.error('Failed to remove item from cart in backend:', error);
+      console.error("Failed to remove item from cart in backend:", error);
     }
   };
 
@@ -110,7 +94,7 @@ const useCart = () => {
         quantity: item.quantity,
       });
     } catch (error) {
-      console.error('Failed to update item in backend:', error);
+      console.error("Failed to update item in backend:", error);
     }
   };
 
@@ -119,7 +103,7 @@ const useCart = () => {
     try {
       await axios.post(`${baseUrl}/users/cart/clear`, { userId: user?.userId });
     } catch (error) {
-      console.error('Failed to clear cart in backend:', error);
+      console.error("Failed to clear cart in backend:", error);
     }
   };
 

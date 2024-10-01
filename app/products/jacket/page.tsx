@@ -1,14 +1,24 @@
-"use client"
-import ProductPage from '@/components/products/ProductPage';
-import Image from 'next/image'
-import React, { useState } from 'react'
+import ProductPage from "@/components/products/ProductPage";
+import axios from "axios";
 
-const page = () => {
+const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
-  return (
-    <ProductPage />
-  )
-}
+const JacketPage = async () => {
+  try {
+    const response = await axios.get(`${baseUrl}/products/66ec0babc9db96a273e5da39`);
+    const product = response.data;
 
-export default page
+    let productImage = "";
+    if (product.productImage && product.productImage.data) {
+      const base64Image = Buffer.from(product.productImage.data).toString("base64");
+      productImage = `data:image/jpeg;base64,${base64Image}`;
+    }
 
+    return <ProductPage product={product} productImage={productImage} />;
+  } catch (error) {
+    console.error("Failed to fetch product data:", error);
+    return <div>Error loading product data</div>;
+  }
+};
+
+export default JacketPage;

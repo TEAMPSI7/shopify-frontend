@@ -1,14 +1,12 @@
 "use client"
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/store/store';
 import { CartItem } from '@/store/cartSlice';
 import useCart from '@/hooks/useCart';
-const Page = () => {
-  const { cart } = useCart()
-  // const cartItems = useSelector((state: RootState) => state.cart.items);
 
-  console.log("CART ITEMS", cart)
+const Page = () => {
+  const { cart } = useCart();
+
+  console.log("CART ITEMS", cart);
   return (
     <div className='flex justify-center items-center h-screen pt-[5rem] bg-[#F6E3FF]'>
       <div className='flex flex-col gap-[1rem] bg-white p-[2rem] rounded-[1rem] border-[1px] border-black text-center'>
