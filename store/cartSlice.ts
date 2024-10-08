@@ -8,7 +8,9 @@ export interface CartItem {
   name: string;
   quantity: number;
   price: number;
-  productImage: string;
+  productImage: {
+    data: any;
+  };
 }
 
 export interface CartState {

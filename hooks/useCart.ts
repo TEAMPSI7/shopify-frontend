@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/store/store";
 import { addItem, clearCart, removeItem, updateItem } from "@/store/cartSlice";
@@ -16,6 +16,7 @@ const useCart = () => {
   const { user } = useAuth();
 
   const hasFetchedCart = useRef(false);
+  const [isFetching, setIsFetching] = useState(true); 
 
   const isCartEqual = (currentCart: CartItem[], fetchedCart: CartItem[]) => {
     if (currentCart.length !== fetchedCart.length) return false;
@@ -43,7 +44,7 @@ const useCart = () => {
           params: { userId: user.userId },
         });
         const cartData = response.data;
-
+        console.log("CART DATA RETURNED", cartData);
         if (cartData && !isCartEqual(cart, cartData)) {
           dispatch(clearCart()); 
           cartData.forEach((item: CartItem) => {
@@ -52,6 +53,7 @@ const useCart = () => {
         }
 
         hasFetchedCart.current = true; 
+        setIsFetching(false); 
       } catch (error) {
         console.error("Failed to fetch cart from backend:", error);
       }
@@ -113,6 +115,7 @@ const useCart = () => {
     removeCartItem,
     updateCartItem,
     clearCartItem,
+    isFetching, 
   };
 };
 
