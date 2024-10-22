@@ -28,9 +28,9 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="bg-[#EDD2FA] py-[6rem] flex flex-col gap-[6rem] ">
-        <div className="flex justify-between w-[70%] mx-auto ">
-          <div className="w-[55%] ">
+      <div className="bg-[#EDD2FA] py-[6rem] flex flex-col gap-[6rem]">
+        <div className="flex flex-col md:flex-row justify-between w-[90%] md:w-[70%] mx-auto">
+          <div className="w-full md:w-[55%]">
             <Image
               className="rounded-[2rem] border-black border-[1px]"
               src={
@@ -39,10 +39,9 @@ export default function Home() {
               alt="image"
               width={1000}
               height={1000}
-           
             />
           </div>
-          <div className="flex flex-col gap-[1.5rem] items-start w-[40%]">
+          <div className="flex flex-col gap-[1.5rem] items-start w-full md:w-[40%] mt-6 md:mt-0">
             <div className="bg-black h-[3.5px] rounded-[2px] w-[10rem]"></div>
             <h1 className="text-black font-bold text-[2rem]">SOUNDWAVE</h1>
             <p className="text-semiblack">
@@ -54,8 +53,8 @@ export default function Home() {
             <Button text="Shop Now" linkString="/products/jacket" />
           </div>
         </div>
-        <div className="flex justify-between w-[70%] mx-auto ">
-          <div className="flex flex-col gap-[1.5rem] items-start w-[40%]">
+        <div className="flex flex-col md:flex-row justify-between w-[90%] md:w-[70%] mx-auto">
+          <div className="flex flex-col gap-[1.5rem] items-start w-full md:w-[40%]">
             <div className="bg-black h-[3.5px] rounded-[2px] w-[10rem]"></div>
             <h1 className="text-black font-bold text-[2rem]">KEYBOY</h1>
             <p className="text-semiblack">
@@ -66,7 +65,7 @@ export default function Home() {
             </p>
             <Button text="Shop Now" linkString="/products/jacket" />
           </div>
-          <div className="w-[55%] ">
+          <div className="w-full md:w-[55%] mt-6 md:mt-0">
             <Image
               className="rounded-[2rem] border-black border-[1px]"
               src={
@@ -92,7 +91,7 @@ export default function Home() {
         </div>
         <div className="relative w-[90%] mx-auto">
           <HomeSVG />
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[60%] text-center mx-auto py-[5rem] px-[10rem] bg-white rounded-[1rem] border-black border-[1px] font-bold text-[1.2rem] ">
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[80%] md:w-[60%] text-center mx-auto py-[2rem] md:py-[5rem] px-[2rem] md:px-[10rem] bg-white rounded-[1rem] border-black border-[1px] font-bold text-[1rem] md:text-[1.5rem]">
             &quot;Our mission is to bring the spirit of classic eras into modern
             households, inviting you to rekindle the feeling of &apos;home&apos;,
             while ensuring that every selection from Inlighte is a cherished
@@ -100,13 +99,16 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="bg-arcade-1 | flex flex-col gap-[1rem] items-start justify-end p-[3rem] h-[100vh] bg-white">
-        <h1 className="text-white font-bold text-[2rem]">50% SUMMER SALE</h1>
-        <p className="text-white text-center text-[2rem]">Final hours. Don&apos;t miss it!</p>
+      <div className="bg-arcade-1 | relative flex flex-col gap-[1rem] items-center md:items-start justify-end py-[4rem] px-[2rem] md:p-[3rem] md:h-[100vh]">
+        <div className="absolute inset-0 bg-black opacity-50"></div> 
+        <h1 className="relative text-white font-bold text-[1.5rem] md:text-[2rem]">50% SUMMER SALE</h1>
+        <p className="relative text-white text-center md:text-[2rem]">Final hours. Don&apos;t miss it!</p>
         <CountdownTimer /> 
       </div>
-      <div className="relative bg-arcade-2 | h-[100vh] bg-white">
-        <div className="absolute top-0 left-[60%] rounded-b-[2rem] border-black border-[1px] items-start bg-white flex flex-col gap-[1rem] p-[3rem] w-[30%]">
+
+      {/* HIDDEN ON MOBILE */}
+      <div className="relative bg-arcade-2 hidden md:block | h-[100vh] bg-white">
+        <div className="absolute top-0 left-[60%] rounded-b-[2rem] border-black border-[1px] items-start bg-white flex flex-col gap-[1rem] p-[3rem] w-[90%] md:w-[30%]">
           <div className="bg-black h-[3.5px] rounded-[2px] w-[10rem]"></div>
           <h1 className="text-black font-bold text-[2rem]">ENJOY MUSIC ANYWHERE</h1>
           <p className="text-semiblack">
@@ -115,14 +117,17 @@ export default function Home() {
           <Button text="Shop Now" linkString="/products/jacket" />
         </div>
       </div>
+
+      {/* SHOWN ON MOBILE*/}
       <div className="bg-[#EDD2FA]">
-        <div className="flex w-4/5 mx-auto gap-[3rem] py-[4rem]">
+        <div className="flex flex-col md:flex-row w-4/5 mx-auto gap-[3rem] py-[4rem]">
+          <div className="flex md:hidden">
+            <Card bgLink="/image/bg-arcade-2.jpg" />
+          </div>
           <Card bgLink="/image/soundbox-1.jpg" />
           <Card bgLink="/image/soundbox-2.jpg"/>
         </div>
       </div>
-
-      
       <div className="bg-[#EDD2FA] pb-[4rem]">
         <FadeImageComponent />
       </div>

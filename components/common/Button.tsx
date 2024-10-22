@@ -9,7 +9,7 @@ type ButtonProps = {
 
 const Button: React.FC<ButtonProps> = ({ text, linkString }) => {
   return (
-    <Link href={linkString} className="text-white bg-black py-[1rem] px-[2rem] rounded-[8px]">
+    <Link href={linkString} className="text-white text-center bg-black py-[1rem] px-[2rem] rounded-[8px]">
       {text}
     </Link>
   );

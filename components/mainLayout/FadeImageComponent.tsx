@@ -36,8 +36,8 @@ const FadeImageComponent = () => {
   };
 
   return (
-    <div className="flex justify-between items-center w-4/5 mx-auto bg-[#EDD2FA] py-8">
-      <div className="flex flex-col gap-6 w-1/2 pl-12">
+    <div className="flex justify-between items-start md:items-center flex-col md:flex-row w-4/5 mx-auto bg-[#EDD2FA] py-8">
+      <div className="flex flex-col gap-6 md:w-full pl-0 md:pl-12">
         {options.map((option, index) => (
           <div
             key={index}
@@ -46,7 +46,7 @@ const FadeImageComponent = () => {
             }`}
             onClick={() => handleOptionChange(index)}
           >
-                <div className='flex items-center gap-[2rem] w-[30rem]'>
+                <div className='flex items-center gap-[2rem] md:w-[30rem]'>
                     { option.icon == "ZoomIn" && <ZoomIn width={150} height={150}/>}
                     { option.icon == "Joystick" && <Joystick width={150} height={150}/>}
                     { option.icon == "Gamepad2" && <Gamepad2 width={150} height={150}/>}

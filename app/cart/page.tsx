@@ -5,6 +5,7 @@ import useCart from "@/hooks/useCart";
 import Link from "next/link";
 import Image from "next/image";
 import Loading from "./loading"; 
+import Button from "@/components/common/Button";
 
 const CartItems = ({ cart }: { cart: CartItem[] }) => {
   return (
@@ -82,9 +83,7 @@ const Page = () => {
                   <Link href="/" className="text-black-500 underline text-center">
                     Continue Shopping
                   </Link>
-                  <button className="bg-blue-500 text-white py-3 rounded-md hover:bg-blue-600 transition">
-                    Checkout
-                  </button>
+                  <Button text="Checkout" linkString="/checkout" />
                 </div>
               </div>
             </div>

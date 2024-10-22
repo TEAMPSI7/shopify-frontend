@@ -9,7 +9,7 @@ type CardProps = {
 const Card: React.FC<CardProps> = ({ bgLink }) => {
   return (
     <div className='bg-white rounded-[1rem] border-black border-[1px] flex flex-col h-full'>
-      <div className="relative w-full h-[600px]">
+      <div className="relative w-full h-[300px] md:h-[600px]">
         <Image 
           className='rounded-t-[1rem]' 
           src={bgLink} 

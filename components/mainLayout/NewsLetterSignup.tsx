@@ -11,7 +11,7 @@ const NewsletterSignup = () => {
   };
 
   return (
-    <div className="bg-white py-[8rem] px-8 flex justify-between items-center w-4/5 mx-auto rounded-lg">
+    <div className="bg-white py-[8rem] px-8 flex flex-col md:flex-row justify-between items-center w-4/5 mx-auto rounded-lg">
  
       <div className="flex flex-col gap-2">
         <h1 className="text-xl font-bold">NEWSLETTER SIGNUP</h1>
@@ -20,7 +20,7 @@ const NewsletterSignup = () => {
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="flex gap-4 items-center">
+      <form onSubmit={handleSubmit} className="flex flex-col mt-4 md:mt-0 md:flex-row gap-4 items-center">
         <input
           type="email"
           placeholder="EMAIL"

@@ -35,33 +35,33 @@ export default function CountdownTimer() {
   }, []);
 
   return (
-    <div className="countdown rounded-[1rem] border-white border-[1px] flex justify-center items-center bg-[#BC2345] bg-opacity-80 py-4">
-      <div className="text-center mx-4">
-        <div className="text-white text-[2rem] font-bold">
+    <div className="relative countdown rounded-[1rem] border-white border-[1px] flex flex-wrap justify-center items-center bg-[#BC2345] bg-opacity-80 py-4">
+      <div className="text-center mx-2 sm:mx-4">
+        <div className="text-white text-[1.5rem] sm:text-[2rem] font-bold">
           {String(timeLeft.days).padStart(2, "0")}
         </div>
-        <div className="text-white text-sm">Days</div>
+        <div className="text-white text-xs sm:text-sm">Days</div>
       </div>
-      <span className="text-white text-[2rem] mx-2">:</span>
-      <div className="text-center mx-4">
-        <div className="text-white text-[2rem] font-bold">
+      <span className="text-white text-[1.5rem] sm:text-[2rem] mx-1 sm:mx-2">:</span>
+      <div className="text-center mx-2 sm:mx-4">
+        <div className="text-white text-[1.5rem] sm:text-[2rem] font-bold">
           {String(timeLeft.hours).padStart(2, "0")}
         </div>
-        <div className="text-white text-sm">Hours</div>
+        <div className="text-white text-xs sm:text-sm">Hours</div>
       </div>
-      <span className="text-white text-[2rem] mx-2">:</span>
-      <div className="text-center mx-4">
-        <div className="text-white text-[2rem] font-bold">
+      <span className="text-white text-[1.5rem] sm:text-[2rem] mx-1 sm:mx-2">:</span>
+      <div className="text-center mx-2 sm:mx-4">
+        <div className="text-white text-[1.5rem] sm:text-[2rem] font-bold">
           {String(timeLeft.minutes).padStart(2, "0")}
         </div>
-        <div className="text-white text-sm">Minutes</div>
+        <div className="text-white text-xs sm:text-sm">Minutes</div>
       </div>
-      <span className="text-white text-[2rem] mx-2">:</span>
-      <div className="text-center mx-4">
-        <div className="text-white text-[2rem] font-bold">
+      <span className="text-white text-[1.5rem] sm:text-[2rem] mx-1 sm:mx-2">:</span>
+      <div className="text-center mx-2 sm:mx-4">
+        <div className="text-white text-[1.5rem] sm:text-[2rem] font-bold">
           {String(timeLeft.seconds).padStart(2, "0")}
         </div>
-        <div className="text-white text-sm">Seconds</div>
+        <div className="text-white text-xs sm:text-sm">Seconds</div>
       </div>
     </div>
   );
