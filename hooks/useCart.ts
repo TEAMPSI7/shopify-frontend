@@ -65,11 +65,13 @@ const useCart = () => {
   const addCartItem = async (item: CartItem) => {
     dispatch(addItem(item));
     try {
-      await axios.post(`${baseUrl}/users/cart/add`, {
+      const response = await axios.post(`${baseUrl}/users/cart/add`, {
         userId: user?.userId,
-        productId: item.id,
+        productId: "66ec0babc9db96a273e5da39",
         quantity: item.quantity,
       });
+      console.log("RESPONSE ADD CART", response);
+      return response.status;
     } catch (error) {
       console.error("Failed to add item to cart in backend:", error);
     }

@@ -9,7 +9,7 @@ import NewsletterSignup from "@/components/mainLayout/NewsLetterSignup";
 export default function Home() {
   return (
     <>
-      <div className="relative h-[100vh] overflow-hidden">
+      <div className="relative h-[100vh] max-h-[1200px] overflow-hidden">
         <video
           className="absolute top-0 left-0 w-full h-full object-cover z-15"
           src="/videos/bg-video.mp4"
@@ -99,7 +99,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="bg-arcade-1 | relative flex flex-col gap-[1rem] items-center md:items-start justify-end py-[4rem] px-[2rem] md:p-[3rem] md:h-[100vh]">
+      <div className="bg-arcade-1 | relative flex flex-col gap-[1rem] items-center md:items-start justify-end py-[4rem] px-[2rem] md:p-[3rem] md:h-[100vh] max-h-[1200px]">
         <div className="absolute inset-0 bg-black opacity-50"></div> 
         <h1 className="relative text-white font-bold text-[1.5rem] md:text-[2rem]">50% SUMMER SALE</h1>
         <p className="relative text-white text-center md:text-[2rem]">Final hours. Don&apos;t miss it!</p>
@@ -107,7 +107,7 @@ export default function Home() {
       </div>
 
       {/* HIDDEN ON MOBILE */}
-      <div className="relative bg-arcade-2 hidden md:block | h-[100vh] bg-white">
+      <div className="relative bg-arcade-2 hidden md:block | h-[100vh] max-h-[1200px] bg-white">
         <div className="absolute top-0 left-[60%] rounded-b-[2rem] border-black border-[1px] items-start bg-white flex flex-col gap-[1rem] p-[3rem] w-[90%] md:w-[30%]">
           <div className="bg-black h-[3.5px] rounded-[2px] w-[10rem]"></div>
           <h1 className="text-black font-bold text-[2rem]">ENJOY MUSIC ANYWHERE</h1>

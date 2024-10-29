@@ -1,4 +1,5 @@
 "use client";
+
 import React from "react";
 import { CartItem } from "@/store/cartSlice";
 import useCart from "@/hooks/useCart";
@@ -6,49 +7,11 @@ import Link from "next/link";
 import Image from "next/image";
 import Loading from "./loading"; 
 import Button from "@/components/common/Button";
-
-const CartItems = ({ cart }: { cart: CartItem[] }) => {
-  return (
-    <div className="grid gap-6">
-      {cart.map((item: CartItem) => {
-        let productImage = "";
-        if (item.productImage && item.productImage.data) {
-          const base64Image = Buffer.from(item.productImage.data).toString("base64");
-          productImage = `data:image/jpeg;base64,${base64Image}`;
-        }
-
-        return (
-          <div key={item.id} className="flex gap-4 p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
-            <div className="flex-shrink-0">
-              <Image
-                src={productImage}
-                alt={item.name}
-                width={100}
-                height={100}
-                className="rounded-lg"
-              />
-            </div>
-            <div className="flex-grow flex flex-col justify-between">
-              <div>
-                <h2 className="text-lg font-semibold">{item.name}</h2>
-                <p className="text-gray-500">{item.quantity} x ${item.price.toFixed(2)}</p>
-              </div>
-              <div>
-                <button className="text-sm text-black bg-red-500 px-4 py-2 rounded-md hover:bg-red-600 transition">
-                  Remove
-                </button>
-              </div>
-            </div>
-          </div>
-        );
-      })}
-    </div>
-  );
-};
+import CartItems from "@/components/products/CartItems";
 
 const Page = () => {
   const { cart, isFetching } = useCart(); 
-
+  console.log("CART", cart);
   const subtotal = cart && cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
   if (isFetching) {
@@ -65,7 +28,7 @@ const Page = () => {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
-              <CartItems cart={cart} />
+              <CartItems />
             </div>
             <div className="bg-gray-100 p-6 rounded-lg shadow-md">
               <h3 className="text-xl font-semibold">Order Summary</h3>

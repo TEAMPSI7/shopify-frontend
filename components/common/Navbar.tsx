@@ -4,11 +4,12 @@ import React, { useState } from 'react'
 import { ShoppingCartIcon, User, Menu, X } from 'lucide-react';
 import { motion } from 'framer-motion'; 
 import useAuth from '@/hooks/useAuth';
+import useCart from '@/hooks/useCart';
 
 const Navbar = () => {
   const { user } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const {cart} = useCart();
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -25,12 +26,16 @@ const Navbar = () => {
   return (
     <div className='bg-[#F6E3FF] text-black'>
       <div className='flex justify-between items-center mx-auto w-full lg:w-4/5 py-4 px-4 lg:px-0'>
-        <h1 className='font-bold text-[1.5rem]'>SUPREME TEAM</h1>
+        <Link href={"/"} className='font-bold text-[1.5rem]'>SUPREME TEAM</Link>
 
         <div className='lg:hidden'>
           <button onClick={toggleMenu}>
             {isMenuOpen ? "" : <Menu size={24} />}
           </button>
+        </div>
+        <div className='hidden lg:flex gap-[2rem] items-center'>
+          <Link className='nav-item py-2 lg:py-0 px-4 lg:px-0' href={"/"} onClick={closeMenu}>HOME</Link>
+          <Link className='nav-item py-2 lg:py-0 px-4 lg:px-0' href={"/products/jacket"} onClick={closeMenu}>JACKET</Link>
         </div>
 
         <motion.div
@@ -53,8 +58,12 @@ const Navbar = () => {
           <Link className='cursor-pointer' href={`/account/${user ? 'profile' : 'login'}`}>
             <User />
           </Link>
-          <Link className='cursor-pointer' href={"/cart"}>
+          <Link className='cursor-pointer relative' href={"/cart"}>
             <ShoppingCartIcon />
+            {cart.length > 0 &&
+             <div className='absolute top-[-10px] right-[-10px] text-[0.6rem] bg-black text-white rounded-full px-[0.5rem] py-[0.2rem] flex items-center justify-center'>
+                {cart.length}
+              </div>}
           </Link>
         </div>
       </div>

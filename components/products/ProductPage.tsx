@@ -44,23 +44,30 @@ const ProductPage = ({ product, productImage }: { product: any; productImage: st
     setSelectedQuantity(quantity);
   };
 
-  const handleAddToCart = () => {
+  const handleAddToCart = async () => {
     const item: CartItem = {
       id: product.id,
       productId: product.id,
       name: `Supreme Jacket - ${selectedColor} - ${selectedStorage}`,
       quantity: selectedQuantity,
       price: pricing.discountedPrice || pricing.price,
-      productImage: productImage,
+      productImage: {
+        data: productImage,
+      },
     };
-    addCartItem(item);
-    toast.success("Product added to cart!"); 
+    const response = await addCartItem(item);
+    console.log(response);
+    if (response === 200) {
+      toast.success("Product added to cart!"); 
+    } else {
+      toast.error("Failed to add product to cart");
+    }
   };
 
   return (
     <div className="bg-pink-100 pt-[4rem] pb-[4rem] sm:pt-[10rem]">
       <Toaster /> 
-      <div className="flex flex-col lg:flex-row w-full lg:w-4/5 mx-auto justify-between h-auto lg:h-[100vh]">
+      <div className="flex flex-col lg:flex-row w-full lg:w-4/5 mx-auto justify-between h-auto lg:h-[100vh] max-h-[1200px]">
         {/* Image Section */}
         <ProductImageSection productImage={productImage} isRedImageVisible={isRedImageVisible} />
 

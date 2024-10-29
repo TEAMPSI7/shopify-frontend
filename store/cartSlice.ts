@@ -8,9 +8,9 @@ export interface CartItem {
   name: string;
   quantity: number;
   price: number;
-  productImage: {
-    data: any;
-  };
+  productImage?: {
+    data: string;
+  }
 }
 
 export interface CartState {
@@ -54,6 +54,7 @@ const cartSlice = createSlice({
     removeItem: (state, action: PayloadAction<string>) => {
       state.items = state.items.filter(item => item.id !== action.payload);
     },
+
     updateItem: (state, action: PayloadAction<CartItem>) => {
       const index = state.items.findIndex(item => item.id === action.payload.id);
       if (index !== -1) {
@@ -63,6 +64,7 @@ const cartSlice = createSlice({
         };
       }
     },
+
     clearCart: (state) => {
       return initialState;
     },
